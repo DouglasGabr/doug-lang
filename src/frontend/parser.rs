@@ -1,8 +1,8 @@
 use std::iter::Peekable;
 use std::vec::IntoIter;
 
-use crate::ast::{Expression, Program, Statement};
-use crate::lexer::{tokenize, Token};
+use super::ast::{Expression, Program, Statement};
+use super::lexer::{tokenize, Token};
 
 #[derive(Debug)]
 pub struct Parser {
@@ -78,6 +78,10 @@ impl Parser {
                 Token::Identifier(identifier) => Expression::Identifier(identifier),
                 _ => unreachable!(),
             },
+            Token::Null => {
+                self.tokens.next().unwrap();
+                Expression::NullLiteral
+            }
             Token::Number(_) => match self.tokens.next().unwrap() {
                 Token::Number(number) => Expression::NumericLiteral(number.parse().unwrap()),
                 _ => unreachable!(),

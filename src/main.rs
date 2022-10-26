@@ -1,8 +1,12 @@
 use std::io::{self, Write};
 
-mod ast;
-mod lexer;
-mod parser;
+use crate::{
+    frontend::{ast::Statement, parser::Parser},
+    runtime::interpreter::evaluate,
+};
+
+mod frontend;
+mod runtime;
 
 fn main() {
     println!("Repl v1.0");
@@ -14,8 +18,10 @@ fn main() {
         if input.contains("exit") || input.trim().is_empty() {
             break;
         }
-        let mut parser = parser::Parser::new(&input);
+        let mut parser = Parser::new(&input);
         let program = parser.produce_ast();
-        println!("{:#?}", program);
+        println!("{:?}", program);
+        let result = evaluate(Statement::Program(program));
+        println!("{:?}", result);
     }
 }

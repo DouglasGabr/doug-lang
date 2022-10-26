@@ -6,6 +6,7 @@ pub struct Program {
 #[derive(Debug)]
 pub enum Statement {
     Expression(Expression),
+    Program(Program),
 }
 
 #[derive(Debug)]
@@ -17,4 +18,5 @@ pub enum Expression {
     },
     Identifier(String),
     NumericLiteral(f64),
+    NullLiteral,
 }
