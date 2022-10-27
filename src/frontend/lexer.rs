@@ -7,7 +7,6 @@ pub enum Token {
     OpenParen,
     CloseParen,
     BinaryOperator(char),
-    Null,
     EndOfFile,
 }
 
@@ -39,7 +38,6 @@ pub fn tokenize(source: &str) -> Vec<Token> {
                     }
                     match token.as_str() {
                         "let" => tokens.push(Token::Let),
-                        "null" => tokens.push(Token::Null),
                         _ => tokens.push(Token::Identifier(token)),
                     }
                 }

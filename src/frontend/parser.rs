@@ -78,10 +78,6 @@ impl Parser {
                 Token::Identifier(identifier) => Expression::Identifier(identifier),
                 _ => unreachable!(),
             },
-            Token::Null => {
-                self.tokens.next().unwrap();
-                Expression::NullLiteral
-            }
             Token::Number(_) => match self.tokens.next().unwrap() {
                 Token::Number(number) => Expression::NumericLiteral(number.parse().unwrap()),
                 _ => unreachable!(),

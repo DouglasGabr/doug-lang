@@ -18,5 +18,4 @@ pub enum Expression {
     },
     Identifier(String),
     NumericLiteral(f64),
-    NullLiteral,
 }

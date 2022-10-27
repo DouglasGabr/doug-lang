@@ -1,5 +1,6 @@
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone)]
 pub enum RuntimeValue {
-    Null,
     Number(f64),
+    Boolean(bool),
+    Null,
 }
