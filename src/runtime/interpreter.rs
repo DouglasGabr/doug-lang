@@ -34,5 +34,16 @@ pub fn evaluate(ast_node: Statement, environment: &mut Environment) -> RuntimeVa
                 }
             }
         },
+        Statement::VariableDeclaration {
+            constant,
+            identifier,
+            value,
+        } => {
+            let value = match value {
+                Some(expression) => evaluate(Statement::Expression(expression), environment),
+                None => RuntimeValue::Null,
+            };
+            environment.declare_variable(identifier, value, constant)
+        }
     }
 }

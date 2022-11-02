@@ -7,6 +7,11 @@ pub struct Program {
 pub enum Statement {
     Expression(Expression),
     Program(Program),
+    VariableDeclaration {
+        constant: bool,
+        identifier: String,
+        value: Option<Expression>,
+    },
 }
 
 #[derive(Debug)]

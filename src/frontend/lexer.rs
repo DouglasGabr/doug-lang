@@ -1,13 +1,15 @@
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum Token {
     Number(String),
     Identifier(String),
     Equals,
     Let,
+    Const,
     OpenParen,
     CloseParen,
     BinaryOperator(char),
     EndOfFile,
+    Semicolon,
 }
 
 pub fn tokenize(source: &str) -> Vec<Token> {
@@ -18,6 +20,7 @@ pub fn tokenize(source: &str) -> Vec<Token> {
         match c {
             '(' => tokens.push(Token::OpenParen),
             ')' => tokens.push(Token::CloseParen),
+            ';' => tokens.push(Token::Semicolon),
             '+' | '-' | '*' | '/' | '%' => tokens.push(Token::BinaryOperator(c)),
             '=' => tokens.push(Token::Equals),
             ' ' | '\n' | '\t' => continue,
@@ -38,6 +41,7 @@ pub fn tokenize(source: &str) -> Vec<Token> {
                     }
                     match token.as_str() {
                         "let" => tokens.push(Token::Let),
+                        "const" => tokens.push(Token::Const),
                         _ => tokens.push(Token::Identifier(token)),
                     }
                 }

@@ -11,9 +11,9 @@ mod runtime;
 fn main() {
     println!("Repl v1.0");
     let mut environment = Environment::new(None);
-    environment.declare_variable("null".to_owned(), RuntimeValue::Null);
-    environment.declare_variable("true".to_owned(), RuntimeValue::Boolean(true));
-    environment.declare_variable("false".to_owned(), RuntimeValue::Boolean(false));
+    environment.declare_variable("null".to_owned(), RuntimeValue::Null, true);
+    environment.declare_variable("true".to_owned(), RuntimeValue::Boolean(true), true);
+    environment.declare_variable("false".to_owned(), RuntimeValue::Boolean(false), true);
     loop {
         let mut input = String::new();
         print!("> ");
